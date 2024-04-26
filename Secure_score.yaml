@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Secure Score API
+  version: 1.0.0
+servers:
+  - url: https://graph.microsoft.com/v1.0
+paths:
+  /security/secureScores/{id}:
+    get:
+      summary: Retrieve secure score
+      description: Retrieve the properties and relationships of a secureScore object.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the secure score.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecureScore'
+components:
+  schemas:
+    SecureScore:
+      type: object
+      properties:
+        id:
+          type: string
+        azureTenantId:
+          type: string
+        activeUserCount:
+          type: integer
+        createdDateTime:
+          type: string
+          format: date-time
+        currentScore:
+          type: number
+        enabledServices:
+          type: array
+          items:
+            type: string
+        licensedUserCount:
+          type: integer
+        maxScore:
+          type: number
+        averageComparativeScores:
+          type: array
+          items:
+            type: object
+            properties:
+              basis:
+                type: string
+              averageScore:
+                type: number
+        controlScores:
+          type: array
+          items:
+            type: object
+            properties:
+              controlCategory:
+                type: string
+              controlName:
+                type: string
+              description:
+                type: string
+              score:
+                type: number
+        vendorInformation:
+          type: object
+          properties:
+            provider:
+              type: string
+            providerVersion:
+              type: string
