@@ -1,0 +1,16 @@
+Descriptor:
+  Name: SecureScorePluginManifest
+  Description: Fetches secure score from Azure Defender for Cloud using Microsoft Graph API
+  DisplayName: Secure Score Plugin
+  Authorization:
+    Type: OAuthAuthorizationCodeFlow
+    ClientId: db4ef679-cad1-4740-82ed-792749ec60d9
+    AuthorizationEndpoint: https://login.microsoftonline.com/c1d91f8d-b889-4794-9127-3d00a3bfd2fc/oauth2/v2.0/authorize
+    TokenEndpoint: https://login.microsoftonline.com/c1d91f8d-b889-4794-9127-3d00a3bfd2fc/oauth2/v2.0/token
+    Scopes: secureScore.read
+    AuthorizationContentType: application/x-www-form-urlencoded
+SkillGroups:
+- Format: API
+  Settings:
+    OpenApiSpecUrl: https://raw.githubusercontent.com/mspanil/Plugins/main/Secure_score.yaml
+    EndpointUrl: https://graph.microsoft.com/v1.0/security/secureScores/
