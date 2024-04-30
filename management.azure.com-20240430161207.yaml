@@ -1,0 +1,59 @@
+openapi: 3.0.1
+info:
+  title: 'https://management.azure.com API'
+  description: 'https://management.azure.com API'
+  version: v1.0
+servers:
+  - url: 'https://management.azure.com'
+paths:
+  /subscriptions/%7Bf1172213-e651-43f1-876e-a00ad8959726%7D/providers/Microsoft.Security/secureScores/ascScore:
+    description: Provides operations to manage ascScore
+    get:
+      summary: Get ascScore
+      operationId: >-
+        Get.subscriptions.%7Bf1172213-e651-43f1-876e-a00ad8959726%7D.providers.Microsoft.Security.secureScores.ascScore
+      parameters:
+        - name: api-version
+          in: query
+          schema:
+            type: string
+      responses:
+        '404':
+          description: Not Found
+          headers:
+            x-ms-failure-cause:
+              schema:
+                type: string
+            x-ms-request-id:
+              schema:
+                type: string
+            x-ms-correlation-request-id:
+              schema:
+                type: string
+            x-ms-routing-request-id:
+              schema:
+                type: string
+            X-Content-Type-Options:
+              schema:
+                type: string
+            X-Cache:
+              schema:
+                type: string
+            X-MSEdge-Ref:
+              schema:
+                type: string
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+x-ms-generated-by:
+  toolName: Dev Proxy
+  toolVersion: 0.17.1
