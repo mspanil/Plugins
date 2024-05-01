@@ -13,4 +13,4 @@ SkillGroups:
 - Format: API
   Settings:
     OpenApiSpecUrl: https://raw.githubusercontent.com/mspanil/Plugins/main/Secure_score.yaml
-    EndpointUrl: https://graph.microsoft.com/v1.0/security/secureScores?$top=5
+    EndpointUrl: https://graph.microsoft.com/v1.0/security/secureScores
