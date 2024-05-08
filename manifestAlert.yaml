@@ -7,10 +7,12 @@ Descriptor:
     ClientId: e20bd831-eb70-4728-8bd9-cfff0e534fcd
     AuthorizationEndpoint: https://login.microsoftonline.com/organizations/oauth2/authorize
     TokenEndpoint: https://login.microsoftonline.com/organizations/oauth2/token
-    Scopes: secureScores
+    Scopes: securityAlerts
     AuthorizationContentType: application/x-www-form-urlencoded
 SkillGroups:
 - Format: API
   Settings:
     OpenApiSpecUrl: https://raw.githubusercontent.com/mspanil/Plugins/main/graph.microsoft.com-20240508152912.yaml
-    EndpointUrl: https://graph.microsoft.com/v1.0/security/alerts?$filter=Severity eq 'High'&$top=10
+    EndpointUrl: https://graph.microsoft.com/v1.0/security/alerts
+
+
