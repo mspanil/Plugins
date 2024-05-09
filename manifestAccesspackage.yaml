@@ -1,0 +1,18 @@
+Descriptor:
+  Name: EntraIDaccesspackagesPluginManifest
+  Description: Fetches Entra access packages using Microsoft Graph API
+  DisplayName: Entra access packages Plugin
+  Authorization:
+    Type: OAuthAuthorizationCodeFlow
+    ClientId: b784e3e2-cd25-461d-bc21-db469f5cd357
+    AuthorizationEndpoint: https://login.microsoftonline.com/organizations/oauth2/authorize
+    TokenEndpoint: https://login.microsoftonline.com/organizations/oauth2/token
+    Scopes: accesspackages
+    AuthorizationContentType: application/x-www-form-urlencoded
+SkillGroups:
+- Format: API
+  Settings:
+    OpenApiSpecUrl: https://raw.githubusercontent.com/mspanil/Plugins/main/graph.microsoft.com-20240509140355%20(AccessPackage).yaml
+    EndpointUrl: https://graph.microsoft.com/v1.0/identityGovernance/entitlementManagement/accessPackages
+
+
