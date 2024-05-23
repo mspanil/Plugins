@@ -10,7 +10,7 @@ paths:
     post:
       summary: Get alerts
       description: Retrieves alerts from the Cyble API using POST method.
-      operationId: GetAlerts
+      operationId: Post.appolo.api.v1.y.alerts
       responses:
         '200':
           description: Successful response
