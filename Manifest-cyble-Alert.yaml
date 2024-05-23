@@ -1,0 +1,16 @@
+Descriptor:
+  Name: FetchAlertsfromCybleusingAPI
+  DisplayName: FetchAlertsfromCybleusingAPI
+  Description: Fetch Alerts from Cyble usingAPI
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: APIKey
+    Key: x-test-api-key
+    Location: Header
+    AuthScheme: ''
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://raw.githubusercontent.com/mspanil/Plugins/main/api.cyble.ai-20240523074230.yaml
