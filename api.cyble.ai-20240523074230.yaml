@@ -1,0 +1,36 @@
+openapi: 3.0.1
+info:
+  title: 'https://api.cyble.ai API'
+  description: 'https://api.cyble.ai API'
+  version: v1.0
+servers:
+  - url: 'https://api.cyble.ai'
+paths:
+  /appolo/api/v1/y/alerts:
+    description: Provides operations to manage alerts
+    get:
+      summary: Get alerts
+      operationId: Get.appolo.api.v1.y.alerts
+      responses:
+        '404':
+          description: Not Found
+          headers:
+            CF-Cache-Status:
+              schema:
+                type: string
+            X-Content-Type-Options:
+              schema:
+                type: string
+            CF-RAY:
+              schema:
+                type: string
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+x-ms-generated-by:
+  toolName: Dev Proxy
+  toolVersion: 0.17.1
