@@ -8,7 +8,7 @@ servers:
 paths:
   /appolo/api/v1/y/alerts:
     description: Provides operations to manage alerts
-    get:
+    POST:
       summary: Get alerts
       operationId: Get.appolo.api.v1.y.alerts
       responses:
