@@ -1,0 +1,134 @@
+openapi: 3.0.1
+info:
+  title: 'https://graph.microsoft.com API'
+  description: 'https://graph.microsoft.com API'
+  version: v1.0
+servers:
+  - url: 'https://graph.microsoft.com'
+paths:
+  /beta/me/settings/regionalAndLanguageSettings:
+    description: Provides operations to manage regionalAndLanguageSettings
+    get:
+      summary: Get regionalAndLanguageSettings
+      operationId: Get.beta.me.settings.regionalAndLanguageSettings
+      responses:
+        '200':
+          description: OK
+          headers:
+            request-id:
+              schema:
+                type: string
+            client-request-id:
+              schema:
+                type: string
+            x-ms-ags-diagnostic:
+              schema:
+                type: string
+            X-Content-Type-Options:
+              schema:
+                type: string
+            OData-Version:
+              schema:
+                type: string
+          content:
+            application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  '@odata.context':
+                    type: string
+                  id:
+                    type: string
+                  defaultRegionalFormat:
+                    type: object
+                  regionalFormatOverrides:
+                    type: object
+                  defaultSpeechInputLanguage:
+                    type: object
+                  authoringLanguages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        locale:
+                          type: string
+                        displayName:
+                          type: string
+                  defaultDisplayLanguage:
+                    type: object
+                    properties:
+                      locale:
+                        type: string
+                      displayName:
+                        type: string
+                  defaultTranslationLanguage:
+                    type: object
+                    properties:
+                      locale:
+                        type: string
+                      displayName:
+                        type: string
+                  translationPreferences:
+                    type: object
+                    properties:
+                      translationBehavior:
+                        type: string
+                      untranslatedLanguages:
+                        type: array
+                        items:
+                          type: string
+                      languageOverrides:
+                        type: array
+                        items:
+                          type: object
+  /v1.0/security/alerts:
+    description: Provides operations to manage alerts
+    get:
+      summary: Get alerts
+      operationId: Get.v1.0.security.alerts
+      parameters:
+        - name: sec-ch-ua-platform-version
+          in: header
+          schema:
+            type: string
+        - name: X-Edge-Shopping-Flag
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          headers:
+            request-id:
+              schema:
+                type: string
+            client-request-id:
+              schema:
+                type: string
+            x-ms-ags-diagnostic:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      innerError:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                          request-id:
+                            type: string
+                          client-request-id:
+                            type: string
+x-ms-generated-by:
+  toolName: Dev Proxy
+  toolVersion: 0.17.1
