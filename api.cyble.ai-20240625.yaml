@@ -18,8 +18,8 @@ paths:
             schema:
               type: object
               properties:
-                "companyUuid": "a0959c21-ec02-47cc-8d4b-224fd9adecb9"
-                  type: string
+                companyUuid: "a0959c21-ec02-47cc-8d4b-224fd9adecb9"
+                type: string
                 orderBy:
                   type: array
                   items:
@@ -71,10 +71,10 @@ paths:
                 withDataMessage:
                   type: boolean
                 skip: 0
-                  type: integer
-                take: 10
-                  type: integer
-                where:
+          type: integer
+          take: 10
+        type: integer
+        where:
                   type: object
                   properties:
                     created_at:
