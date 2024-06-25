@@ -18,7 +18,7 @@ paths:
             schema:
               type: object
               properties:
-                companyUuid: "a0959c21-ec02-47cc-8d4b-224fd9adecb9"
+                companyUuid:
                 type: string
                 orderBy:
                   type: array
