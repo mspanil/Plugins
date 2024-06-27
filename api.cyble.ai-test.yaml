@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Cyble API
+  version: 1.0.0
+paths:
+  /apollo/api/v1/y/alerts:
+    post:
+      summary: Retrieve alerts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyUuid: "a0959c21-ec02-47cc-8d4b-224fd9adecb9"
+                orderBy:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                select:
+                  type: object
+                  properties:
+                    alert_group_id:
+                      type: boolean
+                    archive_date:
+                      type: boolean
+                    archived:
+                      type: boolean
+                    assignee_id:
+                      type: boolean
+                    assignment_date:
+                      type: boolean
+                    created_at:
+                      type: boolean
+                    data_id:
+                      type: boolean
+                    deleted_at:
+                      type: boolean
+                    description:
+                      type: boolean
+                    hash:
+                      type: boolean
+                    id:
+                      type: boolean
+                    metadata:
+                      type: boolean
+                    risk_score:
+                      type: boolean
+                    service:
+                      type: boolean
+                    severity:
+                      type: boolean
+                    status:
+                      type: boolean
+                    tags:
+                      type: boolean
+                    updated_at:
+                      type: boolean
+                    user_severity:
+                      type: boolean
+                withDataMessage:
+                  type: boolean
+                skip:
+                  type: integer
+                take:
+                  type: integer
+                where:
+                  type: object
+                  properties:
+                    created_at:
+                      type: object
+                      properties:
+                        gte:
+                          type: string
+                        lte:
+                          type: string
+                    service:
+                      type: object
+                      properties:
+                        in:
+                          type: array
+                          items:
+                            type: string
+                    severity:
+                      type: object
+                      properties:
+                        in:
+                          type: array
+                          items:
+                            type: string
+                    status:
+                      type: object
+                      properties:
+                        in:
+                          type: array
+                          items:
+                            type: string
+      responses:
+        '200':
+          description: Successful response
