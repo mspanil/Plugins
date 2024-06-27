@@ -1,3 +1,10 @@
+openapi: 3.0.1
+info:
+  title: 'https://api.cyble.ai API'
+  description: 'https://api.cyble.ai API'
+  version: v1.0
+servers:
+  - url: 'https://api.cyble.ai'
 paths:
   /appolo/api/v1/y/alerts:
     description: Provides operations to manage alerts
