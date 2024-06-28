@@ -1,0 +1,98 @@
+openapi: 3.0.1
+info:
+  title: 'https://api.cyble.ai API'
+  description: 'https://api.cyble.ai API'
+  version: v1.0
+servers:
+  - url: 'https://api.cyble.ai'
+paths:
+  /appolo/api/v1/y/alerts:
+    description: Provides operations to manage alerts
+    POST:
+      summary: Post alerts
+      operationId: Post.appolo.api.v1.y.alerts
+      requestBody:
+        required: true  # Request body is required
+        content:
+          {
+  "companyUuid": "a0959c21-ec02-47cc-8d4b-224fd9adecb9",
+  "orderBy": [
+    {
+      "created_at": "desc"
+    }
+  ],
+  "select": {
+    "alert_group_id": true,
+    "archive_date": true,
+    "archived": true,
+    "assignee_id": true,
+    "assignment_date": true,
+    "created_at": true,
+    "data_id": true,
+    "deleted_at": true,
+    "description": true,
+    "hash": true,
+    "id": true,
+    "metadata": true,
+    "risk_score": true,
+    "service": true,
+    "severity": true,
+    "status": true,
+    "tags": true,
+    "updated_at": true,
+    "user_severity": true
+  },
+  "withDataMessage":true,
+  "skip": 0,
+  "take": 10,
+  "where": {
+    "created_at": {
+      "gte": "2024-06-18T00:00:00+00:00",
+      "lte": "2024-06-28T00:00:00+00:00"
+    },
+    "service": {
+      "in": [
+        "darkweb_data_breaches"
+      ]
+    },
+    "severity": {
+      "in": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "status": {
+      "in": [
+        "VIEWED",
+        "UNREVIEWED",
+        "CONFIRMED_INCIDENT",
+        "UNDER_REVIEW",
+        "INFORMATIONAL"
+      ]
+    }
+  }
+}
+      responses:
+        '404':
+          description: Not Found
+          headers:
+            CF-Cache-Status:
+              schema:
+                type: string
+            X-Content-Type-Options:
+              schema:
+                type: string
+            CF-RAY:
+              schema:
+                type: string
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+x-ms-generated-by:
+  toolName: Dev Proxy
+  toolVersion: 0.17.1
