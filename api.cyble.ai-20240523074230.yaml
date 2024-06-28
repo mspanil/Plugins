@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: Cyble API
+  description: API for accessing alerts in Cyble
+  version: v1.0
+servers:
+  - url: https://api.cyble.ai
+paths:
+  /apollo/api/v1/y/alerts:
+    post:
+      summary: Get alerts
+      description: Retrieves alerts from the Cyble API using POST method.
+      operationId: Post.apollo.api.v1.y.alerts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+        '404':
+          description: Not Found
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  schemas:
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        timestamp:
+          type: string
+        severity:
+          type: string
