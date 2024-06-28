@@ -1,30 +1,101 @@
 openapi: 3.0.1
 info:
-  title: Cyble API
-  description: API for accessing alerts in Cyble
+  title: 'Cyble API'
+  description: 'API for Cyble services'
   version: v1.0
 servers:
-  - url: https://api.cyble.ai
+  - url: 'https://api.cyble.ai'
 paths:
-  /apollo/api/v1/y/alerts:
+  /appolo/api/v1/y/alerts:
+    description: Provides operations to manage alerts
     post:
-      summary: Get alerts
-      description: Retrieves alerts from the Cyble API using POST method.
-      operationId: Post.apollo.api.v1.y.alerts
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  alerts:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Alert'
+      summary: Post alerts
+      operationId: postAlerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyUuid: "a0959c21-ec02-47cc-8d4b-224fd9adecb9"
+                type: string
+                orderBy:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      created_at: "desc"
+                      type: string
+                select:
+                  type: object
+                  properties:
+                    alert_group_id: true
+                    archive_date: true
+                    archived: true
+                    assignee_id: true
+                    assignment_date: true
+                    created_at: true
+                    data_id: true
+                    deleted_at: true
+                    description: true
+                    hash: true
+                    id: true
+                    metadata: true
+                    risk_score: true
+                    service: true
+                    severity: true
+                    status: true
+                    tags: true
+                    updated_at: true
+                    user_severity: true
+                    withDataMessage: true
+                    skip: 0
+                    take: 10
+                  where:
+                   type: object
+                   properties:
+                    created_at:
+                      type: object
+                      properties:
+                        gte: "2024-06-18T00:00:00+00:00"
+                        lte: "2024-06-28T00:00:00+00:00"
+                    service:
+                      type: object
+                      properties:
+                        in: "darkweb_data_breaches"
+                        items:
+                            type: string
+                    severity:
+                      type: object
+                      properties:
+                      in: 
+                       items:
+                        -HIGH,
+                        -MEDIUM,
+                        -LOW
+                    status:
+                      in:
+                      type: array
+                      items:
+                        -VIEWED,
+                        -UNREVIEWED,
+                        -CONFIRMED_INCIDENT,
+                        -UNDER_REVIEW,
+                        -INFORMATIONAL
+                   responses:
         '404':
           description: Not Found
+          headers:
+            CF-Cache-Status:
+              schema:
+                type: string
+            X-Content-Type-Options:
+              schema:
+                type: string
+            CF-RAY:
+              schema:
+                type: string
           content:
             application/json; charset=utf-8:
               schema:
@@ -32,16 +103,6 @@ paths:
                 properties:
                   message:
                     type: string
-components:
-  schemas:
-    Alert:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        timestamp:
-          type: string
-        severity:
-          type: string
+x-ms-generated-by:
+  toolName: Dev Proxy
+  toolVersion: 0.17.1                     
