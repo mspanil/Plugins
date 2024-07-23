@@ -1,0 +1,67 @@
+openapi: 3.0.1
+info:
+  title: 'https://graph.microsoft.com API'
+  description: 'https://graph.microsoft.com API'
+  version: v1.0
+servers:
+  - url: https://graph.microsoft.com/
+paths:
+  /security/alerts:
+    description: Provides operations to manage alerts
+    get:
+      summary: Get alerts
+      operationId: Get security.alerts
+      parameters:
+        - name: filter
+          in: query
+          description: Filter expression (e.g., Severity eq 'High')
+          schema:
+            type: string
+        - name: top
+          in: query
+          description: Number of results to return
+          schema:
+            type: string
+        - name: sec-ch-ua-platform-version
+          in: header
+          schema:
+            type: string
+        - name: X-Edge-Shopping-Flag
+          in: header
+          schema:
+            type: string
+      responses:
+        '401':
+          description: Unauthorized
+          headers:
+            request-id:
+              schema:
+                type: string
+            client-request-id:
+              schema:
+                type: string
+            x-ms-ags-diagnostic:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      innerError:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                          request-id:
+                            type: string
+                          client-request-id:
+                            type: string
+
