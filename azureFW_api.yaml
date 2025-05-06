@@ -1,0 +1,205 @@
+openapi: 3.0.1
+info:
+  title: 'Azure Firewall API'
+  description: 'API for fetching Azure Firewall policies, rules, and rule collections'
+  version: v1.0
+servers:
+  - url: https://management.azure.com/subscriptions/f1172213-e651-43f1-876e-a00ad8959726/resourceGroups/RG_mslab/providers/Microsoft.Network/azureFirewalls/FW-mslab
+paths:
+  /firewallPolicies:
+    description: Provides operations to manage firewall policies
+    get:
+      summary: Get firewall policies
+      operationId: GetFirewallPolicies
+      parameters:
+        - name: api-version
+          in: query
+          description: API version
+          schema:
+            type: string
+            example: '2024-05-01'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  id:
+                    type: string
+                  type:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      ruleCollectionGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            priority:
+                              type: integer
+                            ruleCollections:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  priority:
+                                    type: integer
+                                  rules:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        name:
+                                          type: string
+                                        protocols:
+                                          type: array
+                                          items:
+                                            type: string
+                                        sourceAddresses:
+                                          type: array
+                                          items:
+                                            type: string
+                                        destinationAddresses:
+                                          type: array
+                                          items:
+                                            type: string
+                                        destinationPorts:
+                                          type: array
+                                          items:
+                                            type: string
+                                        translatedAddress:
+                                          type: string
+                                        translatedPort:
+                                          type: string
+                                        action:
+                                          type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      innerError:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                          request-id:
+                            type: string
+                          client-request-id:
+                            type: string
+skillsetDescriptor:
+  skills:
+    - name: GetFirewallPolicies
+      description: Fetches firewall policies, rules, and rule collections
+      parameters:
+        - name: api-version
+          in: query
+          description: API version
+          schema:
+            type: string
+            example: '2024-05-01'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  id:
+                    type: string
+                  type:
+                    type: string
+                  properties:
+                    type: object
+                    properties:
+                      ruleCollectionGroups:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            priority:
+                              type: integer
+                            ruleCollections:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  priority:
+                                    type: integer
+                                  rules:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        name:
+                                          type: string
+                                        protocols:
+                                          type: array
+                                          items:
+                                            type: string
+                                        sourceAddresses:
+                                          type: array
+                                          items:
+                                            type: string
+                                        destinationAddresses:
+                                          type: array
+                                          items:
+                                            type: string
+                                        destinationPorts:
+                                          type: array
+                                          items:
+                                            type: string
+                                        translatedAddress:
+                                          type: string
+                                        translatedPort:
+                                          type: string
+                                        action:
+                                          type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                      innerError:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                          request-id:
+                            type: string
+                          client-request-id:
+                            type: string
