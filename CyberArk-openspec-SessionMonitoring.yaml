@@ -1,0 +1,195 @@
+openapi: 3.0.1
+info:
+  title: CyberArk Session Monitoring API
+  version: 1.0.0
+paths:
+  /PasswordVault/api/LiveSessions:
+    get:
+      summary: Get Live Sessions
+      description: Retrieve active or historical privileged sessions from CyberArk Privilege Cloud.
+      responses:
+        '200':
+          description: A list of live sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sessionId:
+                          type: string
+                        userName:
+                          type: string
+                        startTime:
+                          type: string
+                        endTime:
+                          type: string
+                        status:
+                          type: string
+  /PasswordVault/api/LiveSessions/{liveSessionId}:
+    get:
+      summary: Get Live Session Details
+      description: Retrieve details of a specific privileged session from CyberArk Privilege Cloud.
+      parameters:
+        - name: liveSessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the live session
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+                  userName:
+                    type: string
+                  startTime:
+                    type: string
+                  endTime:
+                    type: string
+                  status:
+                    type: string
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activityType:
+                          type: string
+                        timestamp:
+                          type: string
+                        details:
+                          type: string
+  /PasswordVault/api/LiveSessions/{liveSessionId}/activities:
+    get:
+      summary: Get Live Session Activities
+      description: Retrieve activity logs for a specific privileged session from CyberArk Privilege Cloud.
+      parameters:
+        - name: liveSessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Activity logs of the live session
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activityType:
+                          type: string
+                        timestamp:
+                          type: string
+                        details:
+                          type: string
+  /PasswordVault/api/Recordings:
+    get:
+      summary: Get Session Recordings
+      description: Retrieve session recordings from CyberArk Privilege Cloud.
+      responses:
+        '200':
+          description: A list of session recordings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recordings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        recordingId:
+                          type: string
+                        sessionId:
+                          type: string
+                        startTime:
+                          type: string
+                        endTime:
+                          type: string
+                        status:
+                          type: string
+  /PasswordVault/api/Recordings/{recordingId}:
+    get:
+      summary: Get Session Recording Details
+      description: Retrieve details of a specific session recording from CyberArk Privilege Cloud.
+      parameters:
+        - name: recordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the session recording
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recordingId:
+                    type: string
+                  sessionId:
+                    type: string
+                  startTime:
+                    type: string
+                  endTime:
+                    type: string
+                  status:
+                    type: string
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activityType:
+                          type: string
+                        timestamp:
+                          type: string
+                        details:
+                          type: string
+  /PasswordVault/api/Recordings/{recordingId}/activities:
+    get:
+      summary: Get Session Recording Activities
+      description: Retrieve activity logs from a specific session recording from CyberArk Privilege Cloud.
+      parameters:
+        - name: recordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Activity logs of the session recording
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activityType:
+                          type: string
+                        timestamp:
+                          type: string
+                        details:
+                          type: string
