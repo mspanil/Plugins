@@ -1,0 +1,121 @@
+openapi: 3.0.1
+info:
+  title: CyberArk Access Request Optimizer API
+  version: 1.0.0
+paths:
+  /PasswordVault/api/IncomingRequests:
+    get:
+      summary: Get Incoming Requests
+      description: Retrieve a list of incoming access requests from CyberArk Privilege Cloud.
+      responses:
+        '200':
+          description: A list of incoming requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        requestId:
+                          type: string
+                        requester:
+                          type: string
+                        requestDate:
+                          type: string
+                        status:
+                          type: string
+  /PasswordVault/api/IncomingRequests/{RequestID}:
+    get:
+      summary: Get Incoming Request Details
+      description: Retrieve details of a specific incoming access request from CyberArk Privilege Cloud.
+      parameters:
+        - name: RequestID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the incoming request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requestId:
+                    type: string
+                  requester:
+                    type: string
+                  requestDate:
+                    type: string
+                  status:
+                    type: string
+                  details:
+                    type: string
+  /PasswordVault/api/IncomingRequests/{RequestID}/confirm:
+    post:
+      summary: Confirm Incoming Request
+      description: Confirm a specific incoming access request in CyberArk Privilege Cloud.
+      parameters:
+        - name: RequestID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Confirmation of the incoming request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /PasswordVault/api/IncomingRequests/{RequestID}/reject:
+    post:
+      summary: Reject Incoming Request
+      description: Reject a specific incoming access request in CyberArk Privilege Cloud.
+      parameters:
+        - name: RequestID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rejection of the incoming request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /PasswordVault/api/MyRequests:
+    get:
+      summary: Get My Requests
+      description: Retrieve a list of access requests made by the current user in CyberArk Privilege Cloud.
+      responses:
+        '200':
+          description: A list of access requests made by the current user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        requestId:
+                          type: string
+                        requestDate:
+                          type: string
+                        status:
+                          type: string
