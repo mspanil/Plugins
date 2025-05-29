@@ -1,0 +1,179 @@
+openapi: 3.0.1
+info:
+  title: CyberArk Access Risk Analyzer API
+  version: 1.0.0
+paths:
+  /PasswordVault/api/Safes:
+    get:
+      summary: Get Safes
+      description: Retrieve a list of safes from CyberArk Privilege Cloud.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of safes to return (up to 5)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+        - name: riskLevel
+          in: query
+          description: Filter safes by risk level (e.g., high, medium, low)
+          required: false
+          schema:
+            type: string
+            enum: [high, medium, low]
+        - name: createdAfter
+          in: query
+          description: Filter safes created after a specific timestamp
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: A list of safes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        safeNumber:
+                          type: integer
+                        location:
+                          type: string
+                        creator:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                        olacEnabled:
+                          type: boolean
+                        numberOfVersionsRetention:
+                          type: integer
+                          nullable: true
+                        numberOfDaysRetention:
+                          type: integer
+                        autoPurgeEnabled:
+                          type: boolean
+                        creationTime:
+                          type: integer
+                        lastModificationTime:
+                          type: integer
+                        safeUrlId:
+                          type: string
+                        safeName:
+                          type: string
+                        description:
+                          type: string
+                        managingCPM:
+                          type: string
+                        isExpiredMember:
+                          type: boolean
+  /PasswordVault/api/Users:
+    get:
+      summary: Get Users
+      description: Retrieve a list of users from CyberArk Privilege Cloud.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of users to return (up to 5)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        username:
+                          type: string
+                        source:
+                          type: string
+                        userType:
+                          type: string
+                        componentUser:
+                          type: boolean
+                        vaultAuthorization:
+                          type: array
+                          items:
+                            type: string
+                        location:
+                          type: string
+                        personalDetails:
+                          type: object
+                          properties:
+                            firstName:
+                              type: string
+                            middleName:
+                              type: string
+                            lastName:
+                              type: string
+                        UUID:
+                          type: string
+  /PasswordVault/api/Platforms:
+    get:
+      summary: Get Platforms
+      description: Retrieve a list of platforms from CyberArk Privilege Cloud.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of platforms to return (up to 5)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+      responses:
+        '200':
+          description: A list of platforms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  platforms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        platformId:
+                          type: string
+                        platformName:
+                          type: string
+                        description:
+                          type: string
+tags:
+  - name: Safes
+    description: Operations related to safes
+  - name: Users
+    description: Operations related to CyberArk users
+  - name: Platforms
+    description: Platform policy and configuration
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
