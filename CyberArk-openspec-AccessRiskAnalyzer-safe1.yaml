@@ -1,0 +1,78 @@
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+info:
+  title: CyberArk Access Risk Analyzer API
+  version: 1.0.0
+openapi: 3.0.1
+paths:
+  /PasswordVault/api/Safes:
+    get:
+      description: Retrieve a list of safes from CyberArk Privilege Cloud.
+      parameters:
+      - description: Maximum number of safes to return (up to 5)
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 5
+          minimum: 1
+          type: integer
+      - description: Filter safes by risk level (e.g., high, medium, low)
+        in: query
+        name: riskLevel
+        required: false
+        schema:
+          enum:
+          - high
+          - medium
+          - low
+          type: string
+      - description: Filter safes created after a specific timestamp
+        in: query
+        name: createdAfter
+        required: false
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  value:
+                    items:
+                      properties:
+                        autoPurgeEnabled:
+                          type: boolean
+                        creationTime:
+                          type: integer
+                        creator:
+                          properties:
+                            name:
+                              type: string
+                          type: object
+                        isExpiredMember:
+                          type: boolean
+                        numberOfDaysRetention:
+                          type: integer
+                        safeName:
+                          type: string
+                        safeNumber:
+                          type: integer
+                        safeUrlId:
+                          type: string
+                      type: object
+                    type: array
+                type: object
+          description: A list of safes
+      summary: Get Safes
+security:
+- bearerAuth: []
+tags:
+- description: Operations related to safes
+  name: Safes
