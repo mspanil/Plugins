@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: CyberArk Access Risk Analyzer API
+  version: 1.0.0
+
+paths:
+  /PasswordVault/api/Safes:
+    get:
+      summary: Get Safes
+      description: Retrieve a list of safes from CyberArk Privilege Cloud.
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of safes to return (up to 5)
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+        - name: riskLevel
+          in: query
+          description: Filter safes by risk level (e.g., high, medium, low)
+          required: false
+          schema:
+            type: string
+            enum: [high, medium, low]
+        - name: createdAfter
+          in: query
+          description: Filter safes created after a specific timestamp
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: A list of safes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        safeNumber:
+                          type: integer
+                        location:
+                          type: string
+                        creator:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                        olacEnabled:
+                          type: boolean
+                        numberOfVersionsRetention:
+                          type: integer
+                          nullable: true
+                        numberOfDaysRetention:
+                          type: integer
+                        autoPurgeEnabled:
+                          type: boolean
+                        creationTime:
+                          type: integer
+                        lastModificationTime:
+                          type: integer
+                        safeUrlId:
+                          type: string
+                        safeName:
+                          type: string
+                        description:
+                          type: string
+                        managingCPM:
+                          type: string
+                        isExpiredMember:
+                          type: boolean
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Safes
+    description: Operations related to safes
