@@ -1,0 +1,422 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CyberArk Access Risk Analyzer API",
+    "version": "1.0.0"
+  },
+  "host": "wiproidamcoe.privilegecloud.cyberark.cloud",
+  "basePath": "/PasswordVault/api",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/Safes": {
+      "get": {
+        "summary": "Get Safes",
+        "description": "Retrieve a list of safes from CyberArk Privilege Cloud.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of safes to return (up to 5)",
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          {
+            "name": "riskLevel",
+            "in": "query",
+            "description": "Filter safes by risk level (e.g., high, medium, low)",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          {
+            "name": "createdAfter",
+            "in": "query",
+            "description": "Filter safes created after a specific timestamp",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of safes",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "safeNumber": {
+                        "type": "integer"
+                      },
+                      "location": {
+                        "type": "string"
+                      },
+                      "creator": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "olacEnabled": {
+                        "type": "boolean"
+                      },
+                      "numberOfVersionsRetention": {
+                        "type": "integer"
+                      },
+                      "numberOfDaysRetention": {
+                        "type": "integer"
+                      },
+                      "autoPurgeEnabled": {
+                        "type": "boolean"
+                      },
+                      "creationTime": {
+                        "type": "integer"
+                      },
+                      "lastModificationTime": {
+                        "type": "integer"
+                      },
+                      "safeUrlId": {
+                        "type": "string"
+                      },
+                      "safeName": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "managingCPM": {
+                        "type": "string"
+                      },
+                      "isExpiredMember": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Safes/{safeUrlId}/members": {
+      "get": {
+        "summary": "Get Safe Members",
+        "description": "Retrieve a list of members for a specific safe.",
+        "parameters": [
+          {
+            "name": "safeUrlId",
+            "in": "path",
+            "description": "The URL ID of the safe",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of safe members",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "memberName": {
+                    "type": "string"
+                  },
+                  "memberType": {
+                    "type": "string"
+                  },
+                  "permissions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Users": {
+      "get": {
+        "summary": "Get Users",
+        "description": "Retrieve a list of users from CyberArk Privilege Cloud.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of users to return (up to 5)",
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "userType": {
+                    "type": "string"
+                  },
+                  "componentUser": {
+                    "type": "boolean"
+                  },
+                  "vaultAuthorization": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "personalDetails": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "middleName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "UUID": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Platforms": {
+      "get": {
+        "summary": "Get Platforms",
+        "description": "Retrieve a list of platforms from CyberArk Privilege Cloud.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of platforms to return (up to 5)",
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of platforms",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "platformId": {
+                    "type": "string"
+                  },
+                  "platformName": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/IncomingRequests": {
+      "get": {
+        "summary": "Get Incoming Requests",
+        "description": "Retrieve a list of incoming access requests that require approval.",
+        "responses": {
+          "200": {
+            "description": "List of incoming requests",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "requestId": {
+                    "type": "string"
+                  },
+                  "requestor": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "requestedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/IncomingRequests/{RequestID}": {
+      "get": {
+        "summary": "Get Request Details",
+        "description": "Retrieve detailed information about a specific incoming request.",
+        "parameters": [
+          {
+            "name": "RequestID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string"
+                },
+                "justification": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "approver": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/IncomingRequests/{RequestID}/confirm": {
+      "post": {
+        "summary": "Approve Request",
+        "description": "Approve a specific incoming request.",
+        "parameters": [
+          {
+            "name": "RequestID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request approved"
+          }
+        }
+      }
+    },
+    "/IncomingRequests/{RequestID}/reject": {
+      "post": {
+        "summary": "Reject Request",
+        "description": "Reject a specific incoming request.",
+        "parameters": [
+          {
+            "name": "RequestID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request rejected"
+          }
+        }
+      }
+    },
+    "/MyRequests": {
+      "get": {
+        "summary": "Get My Requests",
+        "description": "Retrieve a list of access requests made by the current user.",
+        "responses": {
+          "200": {
+            "description": "List of user requests",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "requestId": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "type": "string"
+                  },
+                  "requestedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
